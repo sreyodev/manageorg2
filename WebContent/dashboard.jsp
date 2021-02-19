@@ -3,7 +3,7 @@
 <!-- Add Page Content here -->
 
 
-<h1>HAI</h1>
+<h1></h1>
 
 
 <jsp:include page="assets/includes/footer.jsp"></jsp:include>

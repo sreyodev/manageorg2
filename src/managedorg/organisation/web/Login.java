@@ -35,13 +35,13 @@ public class Login extends HttpServlet {
 				JSONArray userData = new managedorg.admin.web.Utility().convertRsToJson(new Utility().getUserData(userId));
 				JSONObject jsonObj = new JSONObject(userData.get(0).toString());
 				
-				System.out.println("XX = "+jsonObj);
+				//System.out.println("XX = "+jsonObj);
 				
 				HttpSession session = request.getSession();
 				session.setAttribute("user", user);
 				session.setAttribute("userData", jsonObj);
 				
-				//System.out.println("XY = "+session.getAttribute("userData"));
+				System.out.println("XY = "+session.getAttribute("userData"));
 
 				response.sendRedirect("dashboard.jsp");
 			}

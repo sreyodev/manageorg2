@@ -26,19 +26,8 @@ public class Logout extends HttpServlet {
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
     	response.setContentType("text/html");
-    	Cookie[] cookies = request.getCookies();
-    	if(cookies != null){
-	    	for(Cookie cookie : cookies){
-	    		if(cookie.getName().equals("JSESSIONID")){
-	    			System.out.println("JSESSIONID="+cookie.getValue());
-	    		}
-	    		cookie.setMaxAge(0);
-	    		response.addCookie(cookie);
-	    	}
-    	}
     	//invalidate the session if exists
     	HttpSession session = request.getSession(false);
-    	System.out.println("User="+session.getAttribute("user"));
     	if(session != null){
     		session.invalidate();
     	}

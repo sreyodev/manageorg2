@@ -1,15 +1,16 @@
-<%@page import="org.json.JSONObject"%>
+<%@page import="org.json.JSONObject" session="true"%>
 <%
-		
 	//allow access only if session exists
 	if(session.getAttribute("user") != null && !session.getAttribute("user").toString().equals("")){
 		//Get URL string here and check with session identifier.
-		String currentIdentifier = "vishwagokulam";
+		String currentIdentifier = "sreyo";
 		JSONObject orgData	 = (JSONObject)session.getAttribute("ORG_DATA");
 		if(!orgData.getString("identifier").equalsIgnoreCase(currentIdentifier)){
-			response.sendRedirect("logout.jsp");
+	    	if(session != null){
+	    		session.invalidate();
+	    	}
 		}
-	} else {
-		response.sendRedirect("login.jsp");
-	}
+	} 
+	response.sendRedirect("index.jsp");
+	
 %>
