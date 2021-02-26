@@ -25,6 +25,7 @@ public class Utility {
 					}
 					json.put(obj);
 				}
+				rs.close();
 			}
 		}
 		catch(Exception e) {}

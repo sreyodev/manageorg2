@@ -1,5 +1,12 @@
 <%@page import="org.json.JSONObject"%>
-<%@page import="java.util.Calendar" session="true" %>
+<%@page import="java.util.Calendar" %>
+<%@page session="true"%>
+<%
+if(session.getAttribute("user") == null){
+	response.sendRedirect("login.jsp");
+	return;
+}	
+%>
 <%! 
 	JSONObject userData = null;
 %>

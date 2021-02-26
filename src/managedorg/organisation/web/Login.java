@@ -2,6 +2,9 @@ package managedorg.organisation.web;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -29,21 +32,33 @@ public class Login extends HttpServlet {
 		String pwd = request.getParameter("password");
 		
 		int userId = new Utility().isValidUser(user, pwd);
-		System.out.println("userId = " + userId);
+		
 		if(userId != 0) {
 			try {
-				JSONArray userData = new managedorg.admin.web.Utility().convertRsToJson(new Utility().getUserData(userId));
-				JSONObject jsonObj = new JSONObject(userData.get(0).toString());
-				
-				//System.out.println("XX = "+jsonObj);
-				
-				HttpSession session = request.getSession();
+				JSONArray userData 		= new managedorg.admin.web.Utility().convertRsToJson(new Utility().getUserData(userId)); 
+				JSONObject jsonObj 		= new JSONObject(userData.get(0).toString());
+				HttpSession session 	= request.getSession();
 				session.setAttribute("user", user);
 				session.setAttribute("userData", jsonObj);
 				
-				System.out.println("XY = "+session.getAttribute("userData"));
+				JSONArray urlAccessIdData 		= new managedorg.admin.web.Utility().convertRsToJson(new Utility().getUrlData(jsonObj.getInt("roleId")));
 
-				response.sendRedirect("dashboard.jsp");
+				JSONArray urlListData 	= new managedorg.admin.web.Utility().convertRsToJson(new Utility().fetchAllRoutes());
+				session.setAttribute("urlList", urlListData);
+
+				JSONArray urlAccessList = new JSONArray();
+				for(int aList = 0; aList < urlAccessIdData.length(); aList++) {
+					JSONObject aListObject 	= urlAccessIdData.getJSONObject(aList);
+					for(int index = 0; index < urlListData.length(); index++) {
+			            JSONObject jsonObject 	= urlListData.getJSONObject(index);
+			            if(jsonObject.getInt("id") == aListObject.getInt("routeId")) {
+			            	urlAccessList.put(jsonObject);
+			            	break;
+			            } 
+			        }
+				}
+				session.setAttribute("urlAccessList", urlAccessList);
+				response.sendRedirect("index.jsp");
 			}
 			catch(Exception e) {
 				e.printStackTrace();

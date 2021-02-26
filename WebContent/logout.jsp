@@ -1,3 +1,7 @@
 <script>
-$.get("Logout", function() {});
+
+$.get("Logout", function() {
+
+});
+
 </script>

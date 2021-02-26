@@ -1,9 +1,17 @@
-<jsp:include page="assets/includes/start.jsp"></jsp:include>
+<%@page session="true"%>
+<%
+if(session.getAttribute("user") == null){
+	response.sendRedirect("login.jsp");
+	return;
+} else {	
+%>
+<%@include file="assets/includes/start.jsp"%>
 <!-- Page Content Starts here -->
 
 
 
 
+<h1>ORGANISATIONS</h1>
 
 
 
@@ -17,3 +25,6 @@
 </script>
 <jsp:include page="assets/includes/end.jsp"></jsp:include>
 
+<%
+}	
+%>

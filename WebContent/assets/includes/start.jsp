@@ -1,7 +1,8 @@
 
 <%@page import="org.json.JSONObject"%>
 <%@ page language="java" contentType="text/html;" %>
-<jsp:include page="checkUserSession.jsp"></jsp:include>
+
+<%@include file="checkUserSession.jsp"%>
 <%! 
 	JSONObject userData = null;
 %>
@@ -31,7 +32,7 @@
 		<link href="assets/css/themes/layout/brand/light.css" rel="stylesheet" type="text/css" />
 		<link href="assets/css/themes/layout/aside/light.css" rel="stylesheet" type="text/css" />
 		<!--end::Layout Themes-->
-		<link rel="shortcut icon" href="" />
+		<link rel="shortcut icon" href="assets/media/logos/favicon.ico" />
 	</head>
 	<body id="kt_body" class="header-fixed header-mobile-fixed subheader-enabled subheader-fixed aside-enabled aside-fixed aside-minimize-hoverable page-loading">
 		<div id="kt_header_mobile" class="header-mobile align-items-center header-mobile-fixed">
@@ -68,7 +69,7 @@
 
 		<div class="d-flex flex-column flex-root">
 			<div class="d-flex flex-row flex-column-fluid page">
-					<jsp:include page="asideMenu.jsp"></jsp:include>
+				<%@include file="asideMenu.jsp"%>
 				<div class="d-flex flex-column flex-row-fluid wrapper" id="kt_wrapper">
 					<div id="kt_header" class="header header-fixed">
 						<!--begin::Container-->

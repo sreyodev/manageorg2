@@ -34,35 +34,5 @@ public class Database {
 		return con;
 	}
 	
-	public ResultSet fetchOrgDetails(String identifier)	{
-		ResultSet rs = null;
-		Connection con = getConnection();
-		String sql = "SELECT * from tbl_organisations WHERE identifier = ? AND isActive = 'YES'";
-		PreparedStatement ps;
-		try {
-			ps = con.prepareStatement(sql);
-			ps.setString(1, identifier.trim());
-			rs = ps.executeQuery();		
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
-
-		return rs;
-	}
 	
-	public ResultSet fetchOrgTheme(int orgId)	{
-		ResultSet rs = null;
-		Connection con = getConnection();
-		String sql = "SELECT variable,value from tbl_themes WHERE orgId = ? AND isActive = 'YES'";
-		PreparedStatement ps;
-		try {
-			ps = con.prepareStatement(sql);
-			ps.setInt(1, orgId);
-			rs = ps.executeQuery();		
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
-
-		return rs;
-	}
 }
