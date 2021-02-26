@@ -8,7 +8,6 @@
 %>
 <% 
 	userData	 = (JSONObject)session.getAttribute("userData");
-	System.out.println("userData ="+userData);
 %>
 
 <!DOCTYPE html>
